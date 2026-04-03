@@ -1,26 +1,21 @@
-(* Define a function that takes a string s and returns true or false *)
-let is_pangram s =
+let is_pangram _ =
+    failwith "'is_pangram' is missing"
 
-  (* Create an array of 26 zeros, one slot for each letter a to z *)
+let is_pangram pang =
+
+(*Making a 'freq' array with 26 spaces and initialize 0 in all of them*)
   let freq = Array.make 26 0 in
 
-  (* Walk through every character c in the string one by one *)
+  (*Iterate through a string and like 'int i' in common loops, there's char 'c'*)
   String.iter (fun c ->
 
-    (* Convert the character to lowercase so A and a are treated the same *)
+  (*Converting c into lowercase ascii before 'if' condition checking*)
     let c = Char.lowercase_ascii c in
-
-    (* Only process it if it is actually a letter between a and z *)
     if c >= 'a' && c <= 'z' then
 
-      (* Mark that letter as seen by setting its slot in freq to 1 *)
-      (* Char.code c gives the ASCII number of c *)
-      (* Char.code 'a' is 97, so this gives us a number from 0 to 25 *)
-      (* <- is how you assign a value to an array slot in OCaml *)
+    (*ASCII value checking and incrementing o to 1 with '<-'*)
       freq.(Char.code c - Char.code 'a') <- 1
+    ) pang; (*And finally, perform this all on the 'pang' string*)
 
-  ) s; (* the ) s closes String.iter and tells it to run on string s *)
-
-  (* Check if every slot in freq is 1 *)
-  (* If any slot is still 0, that letter was never seen, so it is not a pangram *)
+  (*Check if all elements in 'freq' are 1 with 'x' iterable*)
   Array.for_all (fun x -> x = 1) freq
